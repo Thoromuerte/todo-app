@@ -21,9 +21,9 @@ export function App() {
             </button>
           </div>
           <div className="menu-filters">
-            <button className="button">All</button>
-            <button className="button">Active</button>
-            <button className="button">Completed</button>
+            <button className="button button--small">All</button>
+            <button className="button button--small">Active</button>
+            <button className="button button--small">Completed</button>
           </div>
         </div>
         <div className="todo-input-container">
@@ -36,13 +36,15 @@ export function App() {
             placeholder="Type your task"
           />
         </div>
+        <div className="todo-list">
         <div className="todo-list-item">
           <input className="checkbox" type="checkbox" />
           <span className="item-text">Do some shit</span>
           <span className="item-date">4:20</span>
-          <button className="button" type="button">
+          <button className="button button--small" type="button">
             DELETE
           </button>
+        </div>
         </div>
       </form>
     </div>
