@@ -2,49 +2,86 @@ import React from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import { AddIcon } from "../icons/AddIcon";
+import { AppMenu } from "../AppMenu";
+import { Todo, TodoItem } from "../TodoItem";
 
-export function App() {
+export function App(): JSX.Element {
+  const [todoList, setTodoList] = React.useState<Todo[]>([]);
+  const [text, setText] = React.useState("");
+
+  const changeText = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setText(event.currentTarget.value);
+  };
+
+  const addTodo = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    if (text === "") {
+      return;
+    }
+
+    const newTodo: Todo = {
+      text,
+      completed: false,
+    };
+
+    const newTodoList = [newTodo, ...todoList];
+
+    setTodoList(newTodoList);
+    setText("");
+  };
+
+  const clearTodo = (): void => {
+    setTodoList([]);
+  };
+
+  const toggleTodo = (todo: Todo): void => {
+    const newTodoList = todoList.map((item) => {
+      if (item === todo) {
+        return {
+          text: item.text,
+          completed: !item.completed,
+        };
+      }
+      return item;
+    });
+    setTodoList(newTodoList);
+  };
+
+  const undoneTodo = todoList.filter((item) => !item.completed);
+
+  const deleteTodo = (todo: Todo): void => {
+    const newTodoList = todoList.filter((item) => {
+      if (item !== todo) {
+        return true;
+      }
+
+      return false;
+    });
+
+    setTodoList(newTodoList);
+  };
+
   return (
     <div className="App">
-      <form className="todo-app">
-        <div className="app-menu">
-          <div className="menu-top-lane">
-            <span className="date-day">
-              <strong>Wednesday,</strong> 4
-            </span>
-            <span className="counter">X Tasks</span>
-          </div>
-          <div className="menu-bottom-lane">
-            <span className="date-month">August</span>
-            <button className="button" type="button">
-              CLEAR LIST
-            </button>
-          </div>
-          <div className="menu-filters">
-            <button className="button button--small">All</button>
-            <button className="button button--small">Active</button>
-            <button className="button button--small">Completed</button>
-          </div>
-        </div>
+      <form className="todo-app" onSubmit={addTodo}>
+        <AppMenu onClear={clearTodo} undoneTodoCount={undoneTodo.length} />
         <div className="todo-input-container">
           <span className="todo-input-icon">
             <AddIcon />
           </span>
           <input
+            value={text}
+            onChange={changeText}
             className="todo-input"
             type="text"
             placeholder="Type your task"
           />
         </div>
         <div className="todo-list">
-        <div className="todo-list-item">
-          <input className="checkbox" type="checkbox" />
-          <span className="item-text">Do some shit</span>
-          <span className="item-date">4:20</span>
-          <button className="button button--small" type="button">
-            DELETE
-          </button>
-        </div>
+          {todoList.map((todo, index) => (
+            <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
+          ))}
         </div>
       </form>
     </div>
