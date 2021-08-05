@@ -9,6 +9,13 @@ interface AppMenuProps {
 
 export const AppMenu = (props: AppMenuProps): JSX.Element => {
   const { onClear, undoneTodoCount, onFilterChange, filterName } = props;
+
+  const getClassnameByFilter = (name: string) => {
+      return `button button--small ${
+        filterName === name ? "button--selected" : ""
+      }`;
+  };
+
   return (
     <div className="app-menu">
       <div className="menu-top-lane">
@@ -25,25 +32,19 @@ export const AppMenu = (props: AppMenuProps): JSX.Element => {
       </div>
       <div className="menu-filters">
         <button
-          className={`button button--small ${
-            filterName === "all" ? "button--selected" : ""
-          }`}
+          className={getClassnameByFilter("all")}
           onClick={() => onFilterChange("all")}
         >
           All
         </button>
         <button
-          className={`button button--small ${
-            filterName === "active" ? "button--selected" : ""
-          }`}
+          className={getClassnameByFilter("active")}
           onClick={() => onFilterChange("active")}
         >
           Active
         </button>
         <button
-          className={`button button--small ${
-            filterName === "completed" ? "button--selected" : ""
-          }`}
+          className={getClassnameByFilter("completed")}
           onClick={() => onFilterChange("completed")}
         >
           Completed
