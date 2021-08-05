@@ -1,3 +1,5 @@
+import { getCurrentDay, getCurrentDate } from "../utilities/date";
+
 interface AppMenuProps {
   onClear: () => void;
   undoneTodoCount: number;
@@ -10,12 +12,12 @@ export const AppMenu = (props: AppMenuProps): JSX.Element => {
     <div className="app-menu">
       <div className="menu-top-lane">
         <span className="date-day">
-          <strong>Wednesday,</strong> 4
+          <strong>{getCurrentDate("weekday")},</strong> {getCurrentDay()}
         </span>
         <span className="counter">{undoneTodoCount} Tasks</span>
       </div>
       <div className="menu-bottom-lane">
-        <span className="date-month">August</span>
+        <span className="date-month">{getCurrentDate("month")}</span>
         <button className="button" type="button" onClick={onClear}>
           CLEAR LIST
         </button>

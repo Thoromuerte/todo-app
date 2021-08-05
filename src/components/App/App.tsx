@@ -23,7 +23,8 @@ export function App(): JSX.Element {
     const newTodo: Todo = {
       text,
       completed: false,
-    };
+      createdAt: new Date()
+        };
 
     const newTodoList = [newTodo, ...todoList];
 
@@ -41,6 +42,7 @@ export function App(): JSX.Element {
         return {
           text: item.text,
           completed: !item.completed,
+          createdAt: item.createdAt
         };
       }
       return item;
@@ -61,6 +63,8 @@ export function App(): JSX.Element {
 
     setTodoList(newTodoList);
   };
+
+
 
   return (
     <div className="App">

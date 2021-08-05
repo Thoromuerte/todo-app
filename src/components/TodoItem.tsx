@@ -1,14 +1,15 @@
+import { getTodoDate } from "../utilities/date";
+
 export interface Todo {
   text: string;
   completed: boolean;
-  // createdAt:Date;
+  createdAt: Date;
 }
 
 interface TodoItemProps {
   todo: Todo;
   onToggle: (todo: Todo) => void;
   onDelete: (todo: Todo) => void;
-
 }
 
 export const TodoItem = (props: TodoItemProps): JSX.Element => {
@@ -25,8 +26,12 @@ export const TodoItem = (props: TodoItemProps): JSX.Element => {
       <span className={`item-text ${todo.completed ? "item-text-done" : ""}`}>
         {todo.text}
       </span>
-      <span className="item-date">4:20</span>
-      <button className="button button--small" type="button" onClick={() => onDelete(todo)}>
+      <span className="item-date">{getTodoDate(todo.createdAt)}</span>
+      <button
+        className="button button--small"
+        type="button"
+        onClick={() => onDelete(todo)}
+      >
         DELETE
       </button>
     </div>
