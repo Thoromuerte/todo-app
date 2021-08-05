@@ -107,7 +107,7 @@ export function App(): JSX.Element {
         <TodoInputBar onChange={changeText} value={text} />
         <div className="todo-list">
           {getFilteredTodos(filter).map((todo, index) => (
-            <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
+            <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} key={index} />
           ))}
         </div>
       </form>
