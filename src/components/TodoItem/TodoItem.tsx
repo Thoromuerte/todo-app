@@ -1,6 +1,6 @@
 import { getTodoDate } from "../../utilities/date";
 
-import "../TodoItem/todoItem.css"
+import "./todoItem.css"
 
 export interface Todo {
   text: string;

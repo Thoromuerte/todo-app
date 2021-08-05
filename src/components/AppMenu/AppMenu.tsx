@@ -1,6 +1,6 @@
 import { getCurrentDay, getCurrentDate } from "../../utilities/date";
 
-import "../AppMenu/appMenu.css"
+import "./appMenu.css";
 
 interface AppMenuProps {
   onClear: () => void;
@@ -13,9 +13,9 @@ export const AppMenu = (props: AppMenuProps): JSX.Element => {
   const { onClear, undoneTodoCount, onFilterChange, filterName } = props;
 
   const getClassnameByFilter = (name: string) => {
-      return `button button--small ${
-        filterName === name ? "button--selected" : ""
-      }`;
+    return `button button--small ${
+      filterName === name ? "button--selected" : ""
+    }`;
   };
 
   return (

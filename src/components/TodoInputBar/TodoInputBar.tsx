@@ -1,15 +1,15 @@
 import { AddIcon } from "../icons/AddIcon";
 
-import "../TodoInputBar/todoInputBar.css"
+import "./todoInputBar.css";
 
 interface TodoInputBarProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
 }
 
-
 export const TodoInputBar = (props: TodoInputBarProps): JSX.Element => {
-  const { onChange, value } = props
+  const { onChange, value } = props;
+
   return (
     <div className="todo-input-container">
       <span className="todo-input-icon">

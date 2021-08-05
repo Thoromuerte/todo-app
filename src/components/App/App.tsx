@@ -4,15 +4,21 @@ import { AppMenu } from "../AppMenu/AppMenu";
 import { Todo, TodoItem } from "../TodoItem/TodoItem";
 import { TodoInputBar } from "../TodoInputBar/TodoInputBar";
 
-import { readFromLocalStorage, saveToLocalStorage } from "../../utilities/storage";
+import {
+  readFromLocalStorage,
+  saveToLocalStorage,
+} from "../../utilities/storage";
 
 import "./App.css";
 
 export function App(): JSX.Element {
-  const [todoList, setTodoList] = React.useState<Todo[]>(readFromLocalStorage("todos") ?? []);
+  const [todoList, setTodoList] = React.useState<Todo[]>(
+    readFromLocalStorage("todos") ?? []
+  );
   const [text, setText] = React.useState("");
-  const [filter, setFilter] = React.useState(readFromLocalStorage("filter") ?? "all");
-
+  const [filter, setFilter] = React.useState(
+    readFromLocalStorage("filter") ?? "all"
+  );
 
   React.useEffect(() => {
     saveToLocalStorage("todos", JSON.stringify(todoList));
@@ -63,8 +69,6 @@ export function App(): JSX.Element {
     setTodoList(newTodoList);
   };
 
-  const undoneTodo = todoList.filter((item) => !item.completed);
-
   const deleteTodo = (todo: Todo): void => {
     const newTodoList = todoList.filter((item) => {
       if (item !== todo) {
@@ -89,6 +93,8 @@ export function App(): JSX.Element {
     return todoList;
   };
 
+  const undoneTodo = todoList.filter((item) => !item.completed);
+
   return (
     <div className="App">
       <form className="todo-app" onSubmit={addTodo}>
@@ -98,7 +104,7 @@ export function App(): JSX.Element {
           filterName={filter}
           onFilterChange={(filterName) => setFilter(filterName)}
         />
-        <TodoInputBar onChange={changeText} value={text}/>
+        <TodoInputBar onChange={changeText} value={text} />
         <div className="todo-list">
           {getFilteredTodos(filter).map((todo, index) => (
             <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
