@@ -1,4 +1,4 @@
-import { getTodoDate } from "../utilities/date";
+import { getTodoDate } from "../../utilities/date";
 
 export interface Todo {
   text: string;

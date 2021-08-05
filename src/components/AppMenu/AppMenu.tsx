@@ -1,4 +1,4 @@
-import { getCurrentDay, getCurrentDate } from "../utilities/date";
+import { getCurrentDay, getCurrentDate } from "../../utilities/date";
 
 interface AppMenuProps {
   onClear: () => void;

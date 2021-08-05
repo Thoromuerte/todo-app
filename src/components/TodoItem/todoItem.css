@@ -1,0 +1,22 @@
+.todo-list-item {
+  display: flex;
+  padding: 16px 24px;
+}
+
+.item-text {
+  color: rgba(36, 36, 36, 0.63);
+  font-weight: bold;
+  padding-left: 6px;
+}
+
+.item-text-done {
+  text-decoration: line-through;
+}
+
+.item-date {
+  margin-left: auto;
+  margin-right: 16px;
+  color: rgba(36, 36, 36, 0.63);
+  font-size: 14px;
+  align-self: center;
+}

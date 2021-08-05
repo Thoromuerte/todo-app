@@ -1,14 +1,26 @@
 import React from "react";
-// import logo from "./logo.svg";
 import "./App.css";
+import "../AppMenu/appMenu.css"
+import "../TodoItem/todoItem.css"
+
 import { AddIcon } from "../icons/AddIcon";
-import { AppMenu } from "../AppMenu";
-import { Todo, TodoItem } from "../TodoItem";
+import { AppMenu } from "../AppMenu/AppMenu";
+import { Todo, TodoItem } from "../TodoItem/TodoItem";
+import { readFromLocalStorage, saveToLocalStorage } from "../../utilities/storage";
 
 export function App(): JSX.Element {
-  const [todoList, setTodoList] = React.useState<Todo[]>([]);
+  const [todoList, setTodoList] = React.useState<Todo[]>(readFromLocalStorage("todos") ?? []);
   const [text, setText] = React.useState("");
-  const [filter, setFilter] = React.useState("all");
+  const [filter, setFilter] = React.useState(readFromLocalStorage("filter") ?? "all");
+
+
+  React.useEffect(() => {
+    saveToLocalStorage("todos", JSON.stringify(todoList));
+  }, [todoList]);
+
+  React.useEffect(() => {
+    saveToLocalStorage("filter", filter);
+  }, [filter]);
 
   const changeText = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setText(event.currentTarget.value);

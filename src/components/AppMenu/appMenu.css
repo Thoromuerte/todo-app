@@ -1,0 +1,64 @@
+.app-menu{
+  padding-bottom: 8px;
+  padding: 24px;
+}
+
+.menu-top-lane {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.menu-bottom-lane {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-day {
+  color: rgb(76, 46, 146);
+  font-size: 36px;
+}
+
+.date-month {
+  font-size: 22px;
+  color: rgba(36, 36, 36, 0.63);
+}
+
+.counter {
+  align-self: flex-end;
+  font-size: 18px;
+  color: rgba(36, 36, 36, 0.63);
+}
+
+.button {
+  font-family: "Roboto";
+  color: rgb(255, 223, 200);
+  background-color: rgba(7, 160, 53, 0.651);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 250ms ease;
+  transition: box-shadow 250ms ease;
+}
+
+.button:hover {
+  background-color: rgba(11, 121, 44, 0.651);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.493);
+}
+
+.button--small {
+  padding: 6px;
+  font-size: 14px;
+}
+
+.button--selected {
+  background-color: rgba(7, 160, 53, 0.938);
+}
+
+.menu-filters {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 8px;
+}
