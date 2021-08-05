@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { AppMenu } from "../AppMenu/AppMenu";
 import { Todo, TodoItem } from "../TodoItem/TodoItem";
