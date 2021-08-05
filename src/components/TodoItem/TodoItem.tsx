@@ -1,3 +1,4 @@
+import "../TodoItem/todoItem.css"
 import { getTodoDate } from "../../utilities/date";
 
 export interface Todo {

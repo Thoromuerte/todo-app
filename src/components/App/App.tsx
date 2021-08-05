@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.css";
-import "../AppMenu/appMenu.css"
-import "../TodoItem/todoItem.css"
 
-import { AddIcon } from "../icons/AddIcon";
+
 import { AppMenu } from "../AppMenu/AppMenu";
 import { Todo, TodoItem } from "../TodoItem/TodoItem";
 import { readFromLocalStorage, saveToLocalStorage } from "../../utilities/storage";
+import { TodoInputBar } from "../TodoInputBar/TodoInputBar";
 
 export function App(): JSX.Element {
   const [todoList, setTodoList] = React.useState<Todo[]>(readFromLocalStorage("todos") ?? []);
@@ -98,18 +97,7 @@ export function App(): JSX.Element {
           filterName={filter}
           onFilterChange={(filterName) => setFilter(filterName)}
         />
-        <div className="todo-input-container">
-          <span className="todo-input-icon">
-            <AddIcon />
-          </span>
-          <input
-            value={text}
-            onChange={changeText}
-            className="todo-input"
-            type="text"
-            placeholder="Type your task"
-          />
-        </div>
+        <TodoInputBar onChange={changeText} value={text}/>
         <div className="todo-list">
           {getFilteredTodos(filter).map((todo, index) => (
             <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />

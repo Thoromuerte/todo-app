@@ -1,3 +1,4 @@
+import "../AppMenu/appMenu.css"
 import { getCurrentDay, getCurrentDate } from "../../utilities/date";
 
 interface AppMenuProps {
