@@ -8,6 +8,7 @@ import { Todo, TodoItem } from "../TodoItem";
 export function App(): JSX.Element {
   const [todoList, setTodoList] = React.useState<Todo[]>([]);
   const [text, setText] = React.useState("");
+  const [filter, setFilter] = React.useState("all");
 
   const changeText = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setText(event.currentTarget.value);
@@ -23,8 +24,8 @@ export function App(): JSX.Element {
     const newTodo: Todo = {
       text,
       completed: false,
-      createdAt: new Date()
-        };
+      createdAt: new Date(),
+    };
 
     const newTodoList = [newTodo, ...todoList];
 
@@ -42,7 +43,7 @@ export function App(): JSX.Element {
         return {
           text: item.text,
           completed: !item.completed,
-          createdAt: item.createdAt
+          createdAt: item.createdAt,
         };
       }
       return item;
@@ -64,12 +65,27 @@ export function App(): JSX.Element {
     setTodoList(newTodoList);
   };
 
+  const getFilteredTodos = (filterName: string) => {
+    if (filterName === "active") {
+      return todoList.filter((todo) => todo.completed === false);
+    }
 
+    if (filterName === "completed") {
+      return todoList.filter((todo) => todo.completed === true);
+    }
+
+    return todoList;
+  };
 
   return (
     <div className="App">
       <form className="todo-app" onSubmit={addTodo}>
-        <AppMenu onClear={clearTodo} undoneTodoCount={undoneTodo.length} />
+        <AppMenu
+          onClear={clearTodo}
+          undoneTodoCount={undoneTodo.length}
+          filterName={filter}
+          onFilterChange={(filterName) => setFilter(filterName)}
+        />
         <div className="todo-input-container">
           <span className="todo-input-icon">
             <AddIcon />
@@ -83,7 +99,7 @@ export function App(): JSX.Element {
           />
         </div>
         <div className="todo-list">
-          {todoList.map((todo, index) => (
+          {getFilteredTodos(filter).map((todo, index) => (
             <TodoItem todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
           ))}
         </div>
