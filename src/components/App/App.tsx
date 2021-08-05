@@ -1,11 +1,12 @@
 import React from "react";
-import "./App.css";
-
 
 import { AppMenu } from "../AppMenu/AppMenu";
 import { Todo, TodoItem } from "../TodoItem/TodoItem";
-import { readFromLocalStorage, saveToLocalStorage } from "../../utilities/storage";
 import { TodoInputBar } from "../TodoInputBar/TodoInputBar";
+
+import { readFromLocalStorage, saveToLocalStorage } from "../../utilities/storage";
+
+import "./App.css";
 
 export function App(): JSX.Element {
   const [todoList, setTodoList] = React.useState<Todo[]>(readFromLocalStorage("todos") ?? []);

@@ -1,5 +1,6 @@
-import "../AppMenu/appMenu.css"
 import { getCurrentDay, getCurrentDate } from "../../utilities/date";
+
+import "../AppMenu/appMenu.css"
 
 interface AppMenuProps {
   onClear: () => void;

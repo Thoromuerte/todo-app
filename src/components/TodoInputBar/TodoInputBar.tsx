@@ -1,5 +1,6 @@
-import "../TodoInputBar/todoInputBar.css"
 import { AddIcon } from "../icons/AddIcon";
+
+import "../TodoInputBar/todoInputBar.css"
 
 interface TodoInputBarProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
